@@ -14,7 +14,7 @@ public class BlueGumBot extends GumBot{
 			
 			
 			
-			run_R[0]=ImageIO.read(getClass().getResource("sprites/gumbot_blue_r1.png"));
+			run_R[0]=ImageIO.read(getClass().getResource("/sprites/gumbot_blue_r1.png"));
 			run_R[1]=ImageIO.read(getClass().getResource("/sprites/gumbot_blue_r2.png"));
 			run_R[2]=ImageIO.read(getClass().getResource("/sprites/gumbot_blue_r3.png"));
 			run_R[3]=ImageIO.read(getClass().getResource("/sprites/gumbot_blue_r4.png"));

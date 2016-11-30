@@ -1,9 +1,13 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.io.IOException;
+
 import javax.swing.JPanel;
 
 import core.Tile;
@@ -53,6 +57,7 @@ public class PlayPanel extends JPanel{
 			//g2.draw(gumbot.getBoundingBox()); //Hitbox
 		}
 	}
+	
 	
 	public void addGumBot(GumBot gumbot) {
 		this.gumbot = gumbot;

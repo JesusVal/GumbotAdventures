@@ -53,26 +53,96 @@ public class World {
 	private Tile newTileInstance(String name, int i, int j) {
 		switch (name) {
 			case "trg1":
-				return new Block("trg1", i, j);
+				return new Block(name, i, j);
 			case "trg2":
-				return new Block("trg2", i, j);
+				return new Block(name, i, j);
 			case "trg3":
-				return new Block("trg3", i, j);
+				return new Block(name, i, j);
 			case "trg4":
-				return new Block("trg4", i, j);
+				return new Block(name, i, j);
 			case "trg5":
-				return new Block("trg5", i, j);
+				return new Block(name, i, j);
 			case "trg6":
-				return new Block("trg6", i, j);
+				return new Block(name, i, j);
 			case "trg7":
-				return new Block("trg7", i, j);
+				return new Block(name, i, j);
 			case "trg8":
-				return new Block("trg8", i, j);
-			case "ter1":
-				return new Block("ter1", i, j);
+				return new Block(name, i, j);
+				
+			case "trs1":
+				return new Block(name, i, j);
+			case "trs2":
+				return new Block(name, i, j);
+			case "trs3":
+				return new Block(name, i, j);
+			case "trs4":
+				return new Block(name, i, j);
+			case "trs5":
+				return new Block(name, i, j);
+			case "trs6":
+				return new Block(name, i, j);
+			case "trs7":
+				return new Block(name, i, j);
+			case "trs8":
+				return new Block(name, i, j);
+				
+			case "tri1":
+				return new Block(name, i, j);
+			case "tri2":
+				return new Block(name, i, j);
+			case "tri3":
+				return new Block(name, i, j);
+			case "tri4":
+				return new Block(name, i, j);
+			case "tri5":
+				return new Block(name, i, j);
+			case "tri6":
+				return new Block(name, i, j);
+			case "tri7":
+				return new Block(name, i, j);
+			case "tri8":
+				return new Block(name, i, j);
+				
+			case "trc1":
+				return new Block(name, i, j);
+			case "trc2":
+				return new Block(name, i, j);
+			case "trc3":
+				return new Block(name, i, j);
+			case "trc4":
+				return new Block(name, i, j);
+			case "trc5":
+				return new Block(name, i, j);
+			case "trc6":
+				return new Block(name, i, j);
+			case "trc7":
+				return new Block(name, i, j);
+			case "trc8":
+				return new Block(name, i, j);
+				
+			case "coin":
+				return new Coins("coin_1", i, j);
+			case "peak":
+				return new spikes(name, i, j);
+			
+			case "bl01":
+				return new Block(name, i, j);
+			case "bl02":
+				return new Block(name, i, j);
+			case "bl03":
+				return new Block(name, i, j);
+			case "bl04":
+				return new Block(name, i, j);
+			case "bl05":
+				return new Block(name, i, j);
+			case "bl06":
+				return new Block(name, i, j);
+			case "bl07":
+				return new Block(name, i, j);
 		}
 		return null;
 	}
+	
 	
 	
 }

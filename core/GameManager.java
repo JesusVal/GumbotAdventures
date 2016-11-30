@@ -18,6 +18,7 @@ public class GameManager extends Thread{
 	private boolean gameIsRunning;
 	
 	//Nivel actual
+	private static final int FINAL_LEVEL = 4;
 	private int currentlevel = 1;
 	private World world;
 	
@@ -28,7 +29,7 @@ public class GameManager extends Thread{
 		this.world.initializeStage(currentlevel);
 		
 		//Inicializa y junta a jugador y gui
-		this.gumbot = new RedGumBot();
+		this.gumbot = new BlueGumBot();
 		this.gamePanel = gamePanel;
 		this.gamePanel.addGumBot(gumbot);	
 		//Cambia el estado del juego a corriendo
@@ -43,9 +44,14 @@ public class GameManager extends Thread{
 		
 		while(gameIsRunning){
 			
-			if(gumbot.outLimits()){ //Cambia de nivel
+			
+			if(gumbot.outLimits()){//Cambia de nivel
+				if((currentlevel >= FINAL_LEVEL)){
+					stopped();
+				}
 				world.initializeStage(++currentlevel);
 				gumbot.reinitialize();
+				
 			}
 			
 			gumbot.checkFalling();
@@ -54,6 +60,7 @@ public class GameManager extends Thread{
 			//Revisa que las teclas esten presionadas
 			manageKeys();
 			
+			gumbot.checkSpecialBlocks();
 			gumbot.checkCollision();
 			gumbot.checkRestoring();
 			gamePanel.repaintGame();
@@ -65,6 +72,11 @@ public class GameManager extends Thread{
 			}
 		}
 	}
+	
+	public void stopped() {
+        gameIsRunning = false;
+        GameManager.interrupted();
+    }
 	
 	//Revisa las teclas presionadas
 	private void manageKeys() {

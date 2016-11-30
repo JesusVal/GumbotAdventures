@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -13,14 +15,15 @@ import gumbot.GumBot;
 public class StatsPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	public static final int STATS_HEIGHT = 40;
-	private static final int HEARTS_X_DISTANCE = 60;
-	private static final int HEARTS_START_X = 84;
-	private static final int HEARTS_START_Y = 4;
-	private static final int HEARTS_SIZE = 32;
+	private static final int BATERY_START_X = 32;
+	private static final int BATERY_START_Y = 4;
+	private static final int COINS_START_X = 128;
+	private static final int COINS_START_Y = 30;
 	
-	private BufferedImage livingHeart;
-	private BufferedImage deadHeart;
+	private BufferedImage [] batery;
+	private BufferedImage coin;
 	private BufferedImage statsPanel;
+	private Font pixelFont;
 	private GumBot gumbot;
 	
 
@@ -32,11 +35,18 @@ public class StatsPanel extends JPanel{
 	}
 	
 	private void loadImages() {
+		this.batery = new BufferedImage[GumBot.MAX_LIFE+1];
 		try {
 			statsPanel=ImageIO.read(getClass().getResource("/items/statsBar.png"));
-			livingHeart=ImageIO.read(getClass().getResource("/items/livingHeart.png"));
-			deadHeart=ImageIO.read(getClass().getResource("/items/deadHeart.png"));
+			batery[0]=ImageIO.read(getClass().getResource("/items/batery_0.png"));
+			batery[1]=ImageIO.read(getClass().getResource("/items/batery_1.png"));
+			batery[2]=ImageIO.read(getClass().getResource("/items/batery_2.png"));
+			batery[3]=ImageIO.read(getClass().getResource("/items/batery_3.png"));
+			coin = ImageIO.read(getClass().getResource("/items/coin_1.png"));
+			pixelFont=Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/items/pixel.ttf")).deriveFont(35.0f);
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (FontFormatException e){
 			e.printStackTrace();
 		}
 	}
@@ -46,15 +56,23 @@ public class StatsPanel extends JPanel{
 		super.paintComponent(g);
 		Graphics2D g2=(Graphics2D)g;
 		
+		g2.setColor(Color.WHITE);
+		g2.setFont(pixelFont);
+		
 		g2.drawImage(statsPanel,0,0,GameFrame.WIDTH-5,STATS_HEIGHT,null);
 		
-		for(int i=0; i<GumBot.MAX_LIFE; i++){
-			if(gumbot.getLife()>i){
-				g2.drawImage(livingHeart,HEARTS_START_X+HEARTS_X_DISTANCE*i,HEARTS_START_Y,HEARTS_SIZE,HEARTS_SIZE,null);
-			} else {
-				g2.drawImage(deadHeart,HEARTS_START_X+HEARTS_X_DISTANCE*i,HEARTS_START_Y,HEARTS_SIZE,HEARTS_SIZE,null);
-			}
+		if(gumbot.getLife() == 3){
+			g2.drawImage(batery[3],BATERY_START_X,BATERY_START_Y,null);
+		}else if(gumbot.getLife() == 2){
+			g2.drawImage(batery[2],BATERY_START_X,BATERY_START_Y,null);
+		}else if(gumbot.getLife() == 1){
+			g2.drawImage(batery[1],BATERY_START_X,BATERY_START_Y,null);
+		}else{
+			g2.drawImage(batery[0],BATERY_START_X,BATERY_START_Y,null);
 		}
+		
+		g2.drawImage(coin, COINS_START_X,COINS_START_Y-24,null);
+		g2.drawString("x"+gumbot.getCoins(), COINS_START_X+32, COINS_START_Y);
 	}
 	
 

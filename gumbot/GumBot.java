@@ -8,8 +8,10 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 import core.Block;
+import core.Coins;
 import core.Tile;
 import core.World;
+import core.spikes;
 
 public abstract class GumBot {
 	
@@ -49,8 +51,9 @@ public abstract class GumBot {
 	private int restoringCount = 0;
 	private boolean restoring = false;
 	
-	public static final int MAX_LIFE = 4;
+	public static final int MAX_LIFE = 3;
 	private int life = MAX_LIFE;
+	private int coins = 0;
 	
 	public GumBot(){
 		this.run_L = new BufferedImage[BUFFER_RUN_SIZE];
@@ -153,7 +156,7 @@ public abstract class GumBot {
 						return;
 					}
 				}
-				if(World.tiledMap[upRow][upRightCornerCol] != null){
+				if(World.tiledMap[upRow][upRightCornerCol] instanceof Block){
 					if(World.tiledMap[upRow][upRightCornerCol].getBoundingBox().intersects(boundingBox)){
 						jumping = false;
 						jumpCount = 0;
@@ -180,6 +183,11 @@ public abstract class GumBot {
 						currentCol = currentX/Tile.TILE_SIZE;
 					}
 				}
+					if(World.tiledMap[tileInFrontOfFootRow][tileInFrontOfFootCol] instanceof spikes){
+						if(boundingBox.intersects(World.tiledMap[tileInFrontOfFootRow][tileInFrontOfFootCol].getBoundingBox()))
+							die();
+					}
+					
 				if(World.tiledMap[currentRow][currentCol] instanceof Block){ //Si esta dentro de un bloque
 					if(boundingBox.intersects(World.tiledMap[currentRow][currentCol].getBoundingBox())){
 						currentX -= DISPLACEMENT;
@@ -201,6 +209,10 @@ public abstract class GumBot {
 						boundingBox.setLocation(currentX, currentY);
 						currentCol = currentX/Tile.TILE_SIZE;
 					}
+					if(World.tiledMap[tileInFrontOfFootRow][tileInFrontOfFootCol] instanceof spikes){
+						if(boundingBox.intersects(World.tiledMap[tileInFrontOfFootRow][tileInFrontOfFootCol].getBoundingBox()))
+							die();
+					}
 				}
 				if(World.tiledMap[currentRow][currentCol] instanceof Block){
 					if(boundingBox.intersects(World.tiledMap[currentRow][currentCol].getBoundingBox())){
@@ -210,6 +222,27 @@ public abstract class GumBot {
 					}
 				}
 			}	
+		}
+	}
+	
+	public void checkSpecialBlocks(){
+		
+		if((boundingBox.getMaxX())/Tile.TILE_SIZE < World.COLS ){
+			if(World.tiledMap[currentRow][currentCol] instanceof spikes){
+				if(World.tiledMap[currentRow][currentCol].getBoundingBox().intersects(boundingBox)){
+					die();
+				}
+			}
+		}
+		
+		if((boundingBox.getMaxX()/Tile.TILE_SIZE)<World.COLS){
+			if(World.tiledMap[currentRow][currentCol] instanceof Coins){
+				if(World.tiledMap[currentRow][currentCol].getBoundingBox().intersects(boundingBox)){
+						coins++;
+					
+					World.tiledMap[currentRow][currentCol] = null;
+				}
+			}
 		}
 	}
 	
@@ -257,6 +290,9 @@ public abstract class GumBot {
 		if(!((World.tiledMap[currentRow+1][underlyingTileXR]) instanceof Block) && !((World.tiledMap[currentRow+1][underlyingTileXL]) instanceof Block)){
 			falling = true;
 			return;
+		}
+		if(World.tiledMap[currentRow +1][underlyingTileXR] instanceof spikes && (World.tiledMap[currentRow +1][underlyingTileXL] instanceof spikes)){
+			die();
 		}
 		
 		falling = false;
@@ -326,6 +362,9 @@ public abstract class GumBot {
 	}
 	public int getLife(){
 		return this.life;
+	}
+	public int getCoins(){
+		return this.coins;
 	}
 
 }
