@@ -7,7 +7,7 @@ public class GameFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	//Dimensiones de la ventana
-	public static final int WIDTH=1280;
+	public static final int WIDTH=640;
 	public static final int HEIGHT=640;
 
 	public GameFrame(GamePanel gamePanel){

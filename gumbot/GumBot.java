@@ -15,10 +15,10 @@ public abstract class GumBot {
 	
 	private static final int GUMBOT_HEIGHT = 32;
 	private static final int GUMBOT_WIDTH  = 32;
-	private static final int GUMBOT_STARTX = 128;
+	private static final int GUMBOT_STARTX = 32;
 	
 	private int currentX = GUMBOT_STARTX;
-	private int currentY = GameFrame.HEIGHT-PlayPanel.TERRAIN_HEIGHT-GUMBOT_HEIGHT;
+	private int currentY = GameFrame.HEIGHT-PlayPanel.TERRAIN_HEIGHT;//-GUMBOT_HEIGHT-200;
 	private int currentCol;
 	private int currentRow;
 	
@@ -282,7 +282,7 @@ public abstract class GumBot {
 	
 	public void reinitialize(){
 		currentX = 0;
-		currentY = GameFrame.HEIGHT-PlayPanel.TERRAIN_HEIGHT-GUMBOT_HEIGHT;
+		currentY = GameFrame.HEIGHT-PlayPanel.TERRAIN_HEIGHT+GUMBOT_HEIGHT; //Sume Gumbot por alguna razon
 		currentCol = 0;
 		currentRow = currentY/Tile.TILE_SIZE;
 		boundingBox = new Rectangle(GUMBOT_STARTX+DISPLACEMENT,currentY,GUMBOT_WIDTH,GUMBOT_HEIGHT);
@@ -292,7 +292,7 @@ public abstract class GumBot {
 	
 	private void die(){
 		currentX = GUMBOT_STARTX;
-		currentY = GameFrame.HEIGHT-PlayPanel.TERRAIN_HEIGHT-GUMBOT_HEIGHT;
+		currentY = GameFrame.HEIGHT-PlayPanel.TERRAIN_HEIGHT+GUMBOT_HEIGHT;
 		currentCol = currentX/Tile.TILE_SIZE;
 		currentRow = currentY/Tile.TILE_SIZE;
 		boundingBox = new Rectangle(GUMBOT_STARTX+DISPLACEMENT,currentY,GUMBOT_WIDTH,GUMBOT_HEIGHT);

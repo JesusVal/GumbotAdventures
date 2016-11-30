@@ -13,7 +13,7 @@ public class World {
 	public static BufferedImage CURRENT_BACKGROUND;
 	public static Tile[][] tiledMap;
 	public static final int ROWS = 18;//9;
-	public static final int COLS = 40;//20;
+	public static final int COLS = 20;//20;
 	
 	
 	public World(){
@@ -52,20 +52,24 @@ public class World {
 	
 	private Tile newTileInstance(String name, int i, int j) {
 		switch (name) {
-			case "ter0":
-				return new Block("ter0", i, j);
+			case "trg1":
+				return new Block("trg1", i, j);
+			case "trg2":
+				return new Block("trg2", i, j);
+			case "trg3":
+				return new Block("trg3", i, j);
+			case "trg4":
+				return new Block("trg4", i, j);
+			case "trg5":
+				return new Block("trg5", i, j);
+			case "trg6":
+				return new Block("trg6", i, j);
+			case "trg7":
+				return new Block("trg7", i, j);
+			case "trg8":
+				return new Block("trg8", i, j);
 			case "ter1":
 				return new Block("ter1", i, j);
-			case "terR":
-				return new Block("terR", i, j);
-			case "terL":
-				return new Block("terL", i, j);
-			case "terQ":
-				return new Block("terQ", i, j);
-			case "terP":
-				return new Block("terP", i, j);
-			case "term":
-				return new Block("term", i, j);
 		}
 		return null;
 	}
