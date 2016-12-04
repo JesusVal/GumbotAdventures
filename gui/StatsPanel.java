@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import gumbot.GumBot;
 
-
+//Crea las estadisticas de juego para mostrar
 public class StatsPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	public static final int STATS_HEIGHT = 40;
@@ -24,7 +24,7 @@ public class StatsPanel extends JPanel{
 	private BufferedImage coin;
 	private BufferedImage statsPanel;
 	private Font pixelFont;
-	private int score = 100_001;
+	private int score = 100_010; //Puntaje inicial
 	private GumBot gumbot;
 	
 
@@ -32,7 +32,7 @@ public class StatsPanel extends JPanel{
 		this.setSize(GameFrame.WIDTH, STATS_HEIGHT);
 		this.setBackground(Color.BLACK);
 		this.setLayout(null);
-		loadImages();
+		loadImages(); //Carga las imagenes de los componentes
 	}
 	
 	private void loadImages() {
@@ -44,6 +44,7 @@ public class StatsPanel extends JPanel{
 			batery[2]=ImageIO.read(getClass().getResource("/items/batery_2.png"));
 			batery[3]=ImageIO.read(getClass().getResource("/items/batery_3.png"));
 			coin = ImageIO.read(getClass().getResource("/items/coin_1.png"));
+			//Carga la fuente de las letras
 			pixelFont=Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/items/pixel.ttf")).deriveFont(35.0f);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -57,11 +58,13 @@ public class StatsPanel extends JPanel{
 		super.paintComponent(g);
 		Graphics2D g2=(Graphics2D)g;
 		
+		//Color de las letras
 		g2.setColor(Color.WHITE);
 		g2.setFont(pixelFont);
 		
 		g2.drawImage(statsPanel,0,0,GameFrame.WIDTH-5,STATS_HEIGHT,null);
 		
+		//Dependiendo la vida de Gumbot, cambia la imagen de la vida
 		if(gumbot.getLife() == 3){
 			g2.drawImage(batery[3],BATERY_START_X,BATERY_START_Y,null);
 		}else if(gumbot.getLife() == 2){
@@ -72,8 +75,10 @@ public class StatsPanel extends JPanel{
 			g2.drawImage(batery[0],BATERY_START_X,BATERY_START_Y,null);
 		}
 		
+		//Dibuja las monedas en monedero
 		g2.drawImage(coin, COINS_START_X,COINS_START_Y-24,null);
 		g2.drawString("x"+gumbot.getCoins(), COINS_START_X+32, COINS_START_Y);
+		//Dibuja el puntaje
 		g2.drawString("Score "+ score, COINS_START_X+96, COINS_START_Y);
 	}
 	

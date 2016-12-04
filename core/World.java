@@ -8,25 +8,29 @@ import java.io.InputStreamReader;
 
 import javax.imageio.ImageIO;
 
+//Inicializa niveles o mundos
 public class World {
 	
 	public static BufferedImage CURRENT_BACKGROUND;
 	public static Tile[][] tiledMap;
-	public static final int ROWS = 18;//9;
-	public static final int COLS = 20;//20;
+	//Columnas y filas del mapa en la ventana
+	public static final int ROWS = 18;
+	public static final int COLS = 20;
 	
-	
+	//Inicializa un mapa del tamanio de la ventada
 	public World(){
 		tiledMap = new Tile[ROWS][COLS];
 	}
 	
+	//Inicializa el mundo
 	public void initializeStage(int level){
 		try {
+			//Carga el fondo dependiendo del nivel
 			CURRENT_BACKGROUND = ImageIO.read(getClass().getResource("/items/background"+String.valueOf(level)+".png"));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
+		//Carga el archivo un archivo de nivel hecho con texto en formato de matriz para crear el mundo
 		InputStream is = this.getClass().getResourceAsStream("/levels/level"+String.valueOf(level)+".txt");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 		String line = null;
@@ -34,13 +38,13 @@ public class World {
 		
 		try {
 			int i=0;
-			while( (line = reader.readLine())  != null){
+			while( (line = reader.readLine())  != null){ //Recorre el archivo
 				tilesInLine = line.split(" ");
-				for(int j=0; j<COLS; j++){
-					if(!tilesInLine[j].equalsIgnoreCase("empt")){
-						tiledMap[i][j] = newTileInstance(tilesInLine[j],i,j);
+				for(int j=0; j<COLS; j++){ //Recorre el arreglo del mundo
+					if(!tilesInLine[j].equalsIgnoreCase("empt")){ //Si no esta vacio
+						tiledMap[i][j] = newTileInstance(tilesInLine[j],i,j); //Carga un Tile
 					} else {
-						tiledMap[i][j] = null;
+						tiledMap[i][j] = null; //Si no pues lo apunta a nulo
 					}
 				}
 				i++;
@@ -50,7 +54,8 @@ public class World {
 		}
 	}
 	
-	private Tile newTileInstance(String name, int i, int j) {
+	//Dependiendo del nombre del bloque, creara un diferente tipo de Tile
+	private Tile newTileInstance(String name, int i, int j) { 
 		switch (name) {
 			case "trg1":
 				return new Block(name, i, j);

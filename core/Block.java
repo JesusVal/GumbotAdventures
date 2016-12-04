@@ -14,7 +14,7 @@ public class Block extends Tile {
 	public Block(String imgName,int i, int j) {
 		super(i,j);
 		this.imgName = imgName;
-		loadInformations();
+		loadInformations(); //Carga imagen de bloques
 	}
 
 	@Override
@@ -26,6 +26,7 @@ public class Block extends Tile {
 	
 	protected void loadInformations() {
 		try {
+			//Dependiendo del nombre del bloque carga la imagen
 			image=ImageIO.read(getClass().getResource("/items/"+imgName+".png"));
 		} catch (IOException e) {
 			e.printStackTrace();

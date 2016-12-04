@@ -5,10 +5,11 @@ import javax.swing.JPanel;
 import core.ControlTeclas;
 import gumbot.GumBot;
 
+//Crea un panel para mover a gumbot y une las estadisticas del juego con el espacio jugable
 public class GamePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unused") //Esto lo puse porque aparece un warning, porque no uso a gumbot directamente
 	private GumBot gumbot;
 	private ControlTeclas controlTeclas;
 	private StatsPanel statsPanel = new StatsPanel();

@@ -8,7 +8,7 @@ public class GreenGumBot extends GumBot{
 
 	protected void loadSprites() {
 		try {
-			//green
+			//Carga imagenes para GumBot verde
 			idle_R=ImageIO.read(getClass().getResource("/sprites/gumbot_green_rest_r.png"));
 			idle_L=ImageIO.read(getClass().getResource("/sprites/gumbot_green_rest_l.png"));
 			

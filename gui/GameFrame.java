@@ -3,6 +3,7 @@ package gui;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
+//Crea una ventana
 public class GameFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
@@ -10,7 +11,7 @@ public class GameFrame extends JFrame {
 	public static final int WIDTH=640;
 	public static final int HEIGHT=640;
 
-	public GameFrame(GamePanel gamePanel){
+	public GameFrame(GamePanel gamePanel){ //Añade el Panel a la ventana
 		
 		this.setTitle("GumBot's Adventures");
 		this.setSize(WIDTH,HEIGHT);

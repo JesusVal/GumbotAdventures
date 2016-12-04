@@ -8,7 +8,7 @@ public class PinkGumBot extends GumBot {
 
 	protected void loadSprites() {
 		try {
-			//pink
+			//Carga imagenes para GumBot rosa
 			
 			idle_R=ImageIO.read(getClass().getResource("/sprites/gumbot_pink_rest_r.png"));
 			idle_L=ImageIO.read(getClass().getResource("/sprites/gumbot_pink_rest_l.png"));

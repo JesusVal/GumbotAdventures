@@ -13,7 +13,7 @@ public class Coins extends Tile {
 	public Coins(String imgName,int i, int j) {
 		super(i,j);
 		this.imgName = imgName;
-		loadInformations();
+		loadInformations(); //Carga imagen de moneda
 	}
 
 	@Override

@@ -13,7 +13,7 @@ public class spikes extends Tile {
 	public spikes(String imgName,int i, int j) {
 		super(i,j);
 		this.imgName = imgName;
-		loadInformations();
+		loadInformations(); //Carga imagen de pinchos
 	}
 
 	@Override

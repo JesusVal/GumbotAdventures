@@ -1,12 +1,9 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.io.IOException;
 
 import javax.swing.JPanel;
 
@@ -14,7 +11,7 @@ import core.Tile;
 import core.World;
 import gumbot.GumBot;
 
-
+//Crea el espacio jugable
 public class PlayPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
@@ -37,12 +34,11 @@ public class PlayPanel extends JPanel{
 		
 		Graphics2D g2=(Graphics2D) g;
 		
+		//Dibuja el fondo
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2.drawImage(World.CURRENT_BACKGROUND,0,-Tile.TILE_SIZE,GameFrame.WIDTH,PLAY_PANEL_HEIGHT, null);
 		
-		//g2.drawImage(World.tiledMap[2][2].getImage(), 2*Tile.TILE_SIZE, 2*Tile.TILE_SIZE, null);
-		
-		
+		//Dibuja los Tiles en el mapa
 		for(int i=0; i<World.ROWS; i++){
 			for(int j=0; j<World.COLS; j++){
 				if(World.tiledMap[i][j]!=null){
@@ -52,9 +48,8 @@ public class PlayPanel extends JPanel{
 		}
 		
 		
-		if(!gumbot.getRestoring()){
+		if(!gumbot.getRestoring()){ //Si no esta en estado de reustauracion, dibuja a gumbot
 			g2.drawImage(gumbot.getCurrentFrame(),gumbot.getCurrentX(),gumbot.getCurrentY(),null);
-			//g2.draw(gumbot.getBoundingBox()); //Hitbox
 		}
 	}
 	

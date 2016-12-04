@@ -41,29 +41,47 @@ public class GameManager extends Thread{
 	
 	@Override
 	public void run() {
-		
+        long timer = System.currentTimeMillis();
+
+        
 		while(gameIsRunning){
 			
 			
 			if(gumbot.outLimits()){//Cambia de nivel
-				if((currentlevel >= FINAL_LEVEL)){
+				if((currentlevel >= FINAL_LEVEL)){ //Si se acabaron los niveles se detiene
 					stopped();
 				}
 				world.initializeStage(++currentlevel);
 				gumbot.reinitialize();
-				
 			}
 			
+			if(gumbot.getLife() == 0){ //Si se muere se manda a la ultima pantalla
+				this.gamePanel.reduceScore(50000); //Puntos de penalización
+				world.initializeStage(FINAL_LEVEL + 1);
+				gumbot.reinitialize();
+				stopped();
+			}
+			
+			//Revisa estados de salto y caida
 			gumbot.checkFalling();
 			gumbot.checkJumping();
 			
 			//Revisa que las teclas esten presionadas
 			manageKeys();
 			
+			//Revisa estados de coliciones
 			gumbot.checkSpecialBlocks();
 			gumbot.checkCollision();
+			
 			gumbot.checkRestoring();
+			
 			gamePanel.repaintGame();
+			
+            //Disminuye 10 puntos cada segundo
+            if (System.currentTimeMillis() - timer > 10) {
+                timer += 1000;
+                this.gamePanel.reduceScore(10);
+            }
 		
 			try {
 				Thread.sleep(MAIN_SLEEP_TIME);
@@ -73,7 +91,7 @@ public class GameManager extends Thread{
 		}
 	}
 	
-	public void stopped() {
+	public void stopped() { //Detiene el juego
         gameIsRunning = false;
         GameManager.interrupted();
     }

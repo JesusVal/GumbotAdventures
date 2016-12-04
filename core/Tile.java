@@ -3,8 +3,9 @@ package core;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+//Tile para mapa
 public abstract class Tile {
-	public static final int TILE_SIZE = 32;//64; //Tamaño de bloques
+	public static final int TILE_SIZE = 32; //Tamaño de bloques
 	protected int row;
 	protected int col;
 	protected BufferedImage image;
@@ -16,9 +17,11 @@ public abstract class Tile {
 		initializeStuff();
 	}
 	
-	protected abstract void initializeStuff();
-	protected abstract void loadInformations();
+	protected abstract void initializeStuff(); //Inicializa las dimenciones y hitbox
+	protected abstract void loadInformations(); //Carga imagenes
 	
+	
+	//Metodos Get
 	public BufferedImage getImage(){
 		return image;
 	}

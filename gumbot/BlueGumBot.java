@@ -5,6 +5,7 @@ import javax.imageio.ImageIO;
 
 public class BlueGumBot extends GumBot{
 
+	//Carga imagenes para GumBot azul
 	protected void loadSprites() {
 		try {
 			//images/gumbot/blue/r
