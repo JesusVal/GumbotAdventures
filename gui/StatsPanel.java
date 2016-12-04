@@ -24,6 +24,7 @@ public class StatsPanel extends JPanel{
 	private BufferedImage coin;
 	private BufferedImage statsPanel;
 	private Font pixelFont;
+	private int score = 100_001;
 	private GumBot gumbot;
 	
 
@@ -73,9 +74,13 @@ public class StatsPanel extends JPanel{
 		
 		g2.drawImage(coin, COINS_START_X,COINS_START_Y-24,null);
 		g2.drawString("x"+gumbot.getCoins(), COINS_START_X+32, COINS_START_Y);
+		g2.drawString("Score "+ score, COINS_START_X+96, COINS_START_Y);
 	}
 	
-
+	public void reduceScore(int i){
+		this.score = (this.score>0) ? this.score-i : 0;
+	}
+	
 	public void addGumBot(GumBot gumbot) {
 		this.gumbot = gumbot;
 	}

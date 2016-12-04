@@ -38,6 +38,10 @@ public class GamePanel extends JPanel{
 		statsPanel.addGumBot(gumbot);
 	}
 	
+	public void reduceScore(int i){
+		this.statsPanel.reduceScore(i);
+	}
+	
 	public void repaintGame(){
 		playPanel.repaint();
 		statsPanel.repaint();
