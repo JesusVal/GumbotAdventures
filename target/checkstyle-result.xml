@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.11.2">
+<file name="C:\Users\kzkz9\Desktop\Escuela\5 sem\Diseño de software\Repositorio\singleton-adapter-practice\src\main\java\com\mycompany\app\AOtraMembresia.java">
+</file>
+<file name="C:\Users\kzkz9\Desktop\Escuela\5 sem\Diseño de software\Repositorio\singleton-adapter-practice\src\main\java\com\mycompany\app\Membresia.java">
+</file>
+<file name="C:\Users\kzkz9\Desktop\Escuela\5 sem\Diseño de software\Repositorio\singleton-adapter-practice\src\main\java\com\mycompany\app\membresias\MembresiaEstandar.java">
+</file>
+<file name="C:\Users\kzkz9\Desktop\Escuela\5 sem\Diseño de software\Repositorio\singleton-adapter-practice\src\main\java\com\mycompany\app\membresias\MembresiaGratis.java">
+</file>
+<file name="C:\Users\kzkz9\Desktop\Escuela\5 sem\Diseño de software\Repositorio\singleton-adapter-practice\src\main\java\com\mycompany\app\membresias\MembresiaHD.java">
+</file>
+<file name="C:\Users\kzkz9\Desktop\Escuela\5 sem\Diseño de software\Repositorio\singleton-adapter-practice\src\main\java\com\mycompany\app\membresias\MembresiaUltra.java">
+</file>
+<file name="C:\Users\kzkz9\Desktop\Escuela\5 sem\Diseño de software\Repositorio\singleton-adapter-practice\src\main\java\com\mycompany\app\membresias\package-info.java">
+</file>
+<file name="C:\Users\kzkz9\Desktop\Escuela\5 sem\Diseño de software\Repositorio\singleton-adapter-practice\src\main\java\com\mycompany\app\OtraMembresia.java">
+</file>
+<file name="C:\Users\kzkz9\Desktop\Escuela\5 sem\Diseño de software\Repositorio\singleton-adapter-practice\src\main\java\com\mycompany\app\package-info.java">
+</file>
+</checkstyle>
